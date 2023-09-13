@@ -1,0 +1,182 @@
+<html>
+    <head><title>Blood Donation</title>
+    <script>
+        function Validation(){
+            let nameBox=document.getElementById("dname");
+            let dobBox=document.getElementById("DOB");
+            let emailBox=document.getElementById("demail");
+            let phoneBox=document.getElementById("dphone");
+            let weightBox=document.getElementById("dweight");
+            let pulseBox=document.getElementById("dpulse");
+            let hbBox=document.getElementById("dhb");
+            let bpBox=document.getElementById("dbp");
+            let radiobox1=document.getElementById("radiobtn1");
+            let radiobox2=document.getElementById("radiobtn2");
+            let radiobox3=document.getElementById("radiobtn3");
+            let radiobox4=document.getElementById("radiobtn4");
+            let radiobox5=document.getElementById("radiobtn5");
+            let radiobox6=document.getElementById("radiobtn6");
+            let genderradiobox1=document.getElementById("genradio1");
+            let genderradiobox2=document.getElementById("genradio2");
+            let questionBox=document.getElementById("dquestion")
+            let checkbox1=document.getElementById("check1");
+            let checkbox2=document.getElementById("check2");
+            let checkbox3=document.getElementById("check3");
+            let checkbox4=document.getElementById("check4");
+            let checkbox5=document.getElementById("check5");
+         
+
+            let nameErrorBox=document.getElementById("nameError");
+            let bloodgroupErrorBox=document.getElementById("bgroupError");
+            let dobErrorBox=document.getElementById("dobError");
+            let dobErrorBox2=document.getElementById("dobError2");
+            let phoneErrorBox1=document.getElementById("phoneError1");
+            let phoneErrorBox2=document.getElementById("phoneError2");
+            let emailErrorBox1=document.getElementById("emailError1");
+            let emailErrorBox2=document.getElementById("emailError2");
+            let genderErrorBox=document.getElementById("genderError");
+            let weightErrorBox=document.getElementById("weightError");
+            let pulseErrorBox=document.getElementById("pulseError");
+            let hbErrorBox=document.getElementById("hbError");
+            let bpErrorBox=document.getElementById("bpError");
+            let questionErrorBox=document.getElementById("questionError");
+            let diseaseErrorBox=document.getElementById("diseaseError");
+
+           
+            bloodgroupErrorBox.innerHTML="&nbsp;";
+            nameErrorBox.innerHTML="&nbsp;";
+            dobErrorBox.innerHTML="&nbsp;";
+            dobErrorBox2.innerHTML="&nbsp;";
+            genderErrorBox.innerHTML="&nbsp;";
+            emailErrorBox1.innerHTML="&nbsp;";
+            emailErrorBox2.innerHTML="&nbsp;";
+            phoneErrorBox1.innerHTML="&nbsp;";
+            phoneErrorBox2.innerHTML="&nbsp;";
+            weightErrorBox.innerHTML="&nbsp;";
+            pulseErrorBox.innerHTML="&nbsp;";
+            hbErrorBox.innerHTML="&nbsp;";
+            bpErrorBox.innerHTML="&nbsp;";
+            questionErrorBox.innerHTML="&nbsp;";
+            diseaseErrorBox.innerHTML="&nbsp;";
+           
+           
+
+            let letters=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            if(!radiobox1.checked && !radiobox2.checked && !radiobox3.checked && !radiobox4.checked && !radiobox5.checked && !radiobox6.checked ){
+                bloodgroupErrorBox.innerHTML="*";
+                return false;
+            }
+            if(nameBox.value== ""){
+                nameErrorBox.innerHTML="*";
+                return false;
+            }
+            if(dobBox.value==""){
+                dobErrorBox.innerHTML="*";
+                return false;
+            }
+            if(!genderradiobox1.checked && !genderradiobox2.checked){
+                genderErrorBox.innerHTML="*";
+                return false;
+            }
+            if(emailBox.value == ""){
+                emailErrorBox1.innerHTML=" *";
+                return false;
+            }else if(!emailBox.value.match(letters)){
+                emailErrorBox2.innerHTML="Invalid email address!"
+                return false;
+            }
+            if(phoneBox.value == ""){
+                phoneErrorBox1.innerHTML="*";
+                return false;
+            }else if(phoneBox.value.length >11 ||phoneBox.value.length <11){
+                phoneErrorBox2.innerHTML="Invalid phone number!";
+                return false;
+            }else if(phoneBox.value <0){
+                phoneErrorBox2.innerHTML="Invalid phone number!";
+                return false;
+            }
+            if(weightBox.value==""){
+                weightErrorBox.innerHTML="*";
+                return false;
+            }
+            if(pulseBox.value==""){
+                pulseErrorBox.innerHTML="*";
+                return false;
+            }
+            if(hbBox.value==""){
+                hbErrorBox.innerHTML="*";
+                return false;
+            }
+            if(bpBox.value==""){
+                bpErrorBox.innerHTML="*";
+                return false;
+            }
+            if(questionBox.value==""){
+                questionErrorBox.innerHTML="*";
+                return false;
+            }
+            if(!checkbox1.checked && !checkbox2.checked && !checkbox3.checked && !checkbox4.checked && !checkbox5.checked){
+                diseaseErrorBox.innerHTML="*";
+                return false;
+            }
+        }
+
+
+    </script>
+    </head>
+    <body>
+        <div style="border: 2px solid black;border-radius: 5px;width: 500px;">
+            <form id="blooddonationform" action="http://localhost:8000/donateblood" method="POST" onsubmit="return Validation()">
+                <table>
+                    <tr>
+                        <td>What is your Blood Group?<span id="bgroupError" style="color: red;"></span></td>
+                      </tr>
+                      <tr>
+                        <td><input type="radio" name="radiobtn" id="radiobtn1" value="AB+">AB+</td>
+                        <td><input type="radio" name="radiobtn" id="radiobtn2" value="A-">A-</td>
+                      </tr>
+                      <tr>
+                        <td><input type="radio" name="radiobtn" id="radiobtn3" value="B+">B+</td>
+                        <td><input type="radio" name="radiobtn" id="radiobtn4" value="O+">O+</td>
+                      </tr>
+                      <tr>
+                        <td><input type="radio" name="radiobtn" id="radiobtn5" value="O-">O-</td>
+                        <td><input type="radio" name="radiobtn" id="radiobtn6" value="AB-">AB-</td>
+                      </tr>
+                      
+                    
+                    <tr><td>Full Name<span id="nameError" style="color: red;"></span></td><td><input type="text" name="donorName" id="dname"></td></tr>
+                 
+                    <tr><td>Birth Date <span id="dobError" style="color: red;"></span></td><td><input type="date" name="donorDOB" id="DOB" onchange="validateDateInput(this)"></td></tr>
+                    <tr><td colspan="2" align="end"><span id="dobError2" style="color: red;">&nbsp;</span></td></tr>
+
+                    <tr><td>Gender<span id="genderError" style="color: red;"></span></td><td><input type="radio" name="gnradio" id="genradio1" value="male">Male
+                        <input type="radio" name="gnradio" id="genradio2" value="female">Female
+                        </td></tr>
+                    <tr><td>Email<span  id="emailError1" style="color: red;"></span></td><td><input type="text" name="donorEmail" id="demail"></td></tr>
+                    <tr><td colspan="2" align="end"><span id="emailError2" style="color: red;">&nbsp;</span></td></tr>
+
+                    <tr><td>Phone<span id="phoneError1" style="color: red;"></span></td><td><input type="number" name="donorPhone" id="dphone"></td></tr>
+                    <tr><td colspan="2" align="end"><span  id="phoneError2" style="color: red;">&nbsp;</span></td></tr>
+
+                    <tr><td>Weight<span id="weightError" style="color: red;"></span> <br><input type="text" name="donorWeight" id="dweight"></td>
+                        <td>Pulse<span id="pulseError" style="color: red;"></span> <br><input type="text" name="donorPulse" id="dpulse"></td></tr>
+                    <tr><td>Hb <span id="hbError" style="color: red;"></span><br><input type="text" name="donorHb" id="dhb"></td>
+                        <td>BP<span id="bpError" style="color: red;"></span> <br><input type="text" name="donorBp" id="dbp"></td></tr>
+
+                    <tr><td>What the last time you donated blood?<span id="questionError" style="color: red;"></span></td>
+                    <tr><td><input type="date" name="lastdonationdate" id="dquestion"></td></tr>
+
+                    <tr><td colspan="2">Do you suffer from or have suffered from any of the following diseases?<span id="diseaseError" style="color: red;"></span></td></tr>
+                    <tr><td><input type="checkbox" name="disease" id="check1" value="Heart Diseases">Heart Diseases</td>
+                        <td><input type="checkbox" name="disease" id="check2"  value="Lung Diseases" >Lung Diseases</td></tr>
+                    <tr><td><input type="checkbox" name="disease" id="check3"  value="Hepatitus">Hepatitus</td>
+                        <td><input type="checkbox" name="disease" id="check4" value="Diabetes">Diabetes</td></tr>
+                        <td><input type="checkbox" name="disease" id="check5" value="NO">NO </td></tr>
+                    <tr><td colspan="2" align="center"><input type="submit" ></td></tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+    <head><title>Donate Blood</title>
+        <link rel="stylesheet" href="donorsList.css">
+
+    </head>
+    <body>
+        <% if (message) { %>
+            <p><%= message %></p>
+          <% } %>
+        <table class="table " align="center" >
+            </tr>
+            <tr><th >Name</th>
+                <th>DOB</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Weight</th>
+                <th>Pulse</th>
+                <th>HB</th>
+                <th>BP</th>
+                <th>Diseases</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        
+        <% listdonators.forEach((donor)=>{%>
+            <tr>
+                <td><%= donor.donorName %></td>
+                <td><%= donor.donorDOB %></td>
+                <td><%= donor.donorEmail %></td>
+                <td><%= donor.donorPhone %></td>
+                <td><%= donor.donorWeight %></td>
+                <td><%= donor.donorPulse %></td>
+                <td><%= donor.donorHb %></td>
+                <td><%= donor.donorBp %></td>
+                <td><%= donor.disease %></td>
+                <td><a  href="editDonor.htm?donorId=<%= donor._id %>"><span style="font-size: 24px;font-weight: bold;color: green;">&#128395;</span></a></td> 
+                <td><a  href="deleteDonor.htm?donorId=<%= donor._id %>"><span style="font-size: 24px;font-weight: bold;color: red;">&#128465;</span></a></td> 
+                
+            </tr>
+            <% }); %>
+        </table>
+    </body>
+</html>
